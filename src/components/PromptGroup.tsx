@@ -1,50 +1,49 @@
 import { useState } from 'react';
+import { Check, Clipboard } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
-const prompts = {
-  "🎓 Học sinh": [
-    "Giải thích định luật Newton dễ hiểu nhất có thể",
-    "Viết đoạn văn về 'Mẹ' bằng 5 câu",
-  ],
-  "👩‍🍼 Mẹ bán hàng": [
-    "Viết caption bán hàng cho nước mắm truyền thống",
-    "Gợi ý cách livestream thu hút người xem",
-  ],
-  "🛵 Chú xe ôm": [
-    "Cách nói chuyện vui vẻ với khách đi đường xa",
-    "Viết lời giới thiệu bản thân thân thiện",
-  ],
-};
+const prompts = [
+  'Viết một đoạn giới thiệu bản thân ấn tượng bằng tiếng Việt',
+  'Tạo thực đơn ăn kiêng trong 1 tuần theo kiểu Việt Nam',
+  'Hướng dẫn dùng ChatGPT để học từ vựng tiếng Anh mỗi ngày',
+];
 
-export const PromptGroup = () => {
-  const [copied, setCopied] = useState<string | null>(null);
+export function PromptGroup() {
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
-  const handleCopy = async (text: string) => {
-    await navigator.clipboard.writeText(text);
-    setCopied(text);
-    setTimeout(() => setCopied(null), 1500);
+  const handleCopy = async (prompt: string, index: number) => {
+    await navigator.clipboard.writeText(prompt);
+    setCopiedIndex(index);
+    toast('📋 Prompt đã được copy!');
+    setTimeout(() => setCopiedIndex(null), 1500);
   };
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-xl font-bold">📚 Gợi ý prompt theo nhóm người dùng</h2>
-      {Object.entries(prompts).map(([group, groupPrompts]) => (
-        <div key={group} className="bg-gray-100 p-4 rounded-xl">
-          <h3 className="font-semibold">{group}</h3>
-          <ul className="list-disc pl-5 mt-2 space-y-1">
-            {groupPrompts.map((prompt, idx) => (
-              <li key={idx} className="flex items-start justify-between gap-2">
-                <span className="flex-1">{prompt}</span>
-                <button
-                  onClick={() => handleCopy(prompt)}
-                  className="text-sm px-2 py-1 bg-blue-100 hover:bg-blue-200 rounded"
-                >
-                  {copied === prompt ? "✅ Copied!" : "📋 Copy"}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <div className="space-y-2">
+      <h2 className="text-xl font-semibold">📚 Prompt gợi ý:</h2>
+      <ul className="space-y-2">
+        {prompts.map((prompt, index) => (
+          <li
+            key={index}
+            className="bg-white rounded-xl shadow p-3 flex justify-between items-center border hover:border-indigo-300 transition"
+          >
+            <span className="text-sm">{prompt}</span>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => handleCopy(prompt, index)}
+              className="ml-2"
+            >
+              {copiedIndex === index ? (
+                <Check className="w-4 h-4 text-green-600" />
+              ) : (
+                <Clipboard className="w-4 h-4" />
+              )}
+            </Button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
-};
+}

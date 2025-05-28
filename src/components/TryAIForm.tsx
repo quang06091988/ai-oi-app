@@ -1,64 +1,73 @@
 import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { toast } from 'sonner';
 
-export const TryAIForm = () => {
-  const [input, setInput] = useState('');
+type HistoryItem = {
+  prompt: string;
+  feeling: string;
+};
+
+export function TryAIForm() {
+  const [prompt, setPrompt] = useState('');
   const [feeling, setFeeling] = useState('');
-  const [history, setHistory] = useState<{ input: string, feeling: string }[]>([]);
-
-  const handleSubmit = () => {
-    if (!input || !feeling) return;
-    const newEntry = { input, feeling };
-    const updated = [...history, newEntry];
-    setHistory(updated);
-    localStorage.setItem('ai-oi-history', JSON.stringify(updated));
-    setInput('');
-    setFeeling('');
-  };
+  const [history, setHistory] = useState<HistoryItem[]>([]);
 
   useEffect(() => {
-    const saved = localStorage.getItem('ai-oi-history');
-    if (saved) {
-      setHistory(JSON.parse(saved));
+    const stored = localStorage.getItem('ai-experience-history');
+    if (stored) {
+      setHistory(JSON.parse(stored));
     }
   }, []);
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!prompt || !feeling) {
+      toast.error('Vui lòng điền đầy đủ thông tin');
+      return;
+    }
+
+    const newItem: HistoryItem = { prompt, feeling };
+    const updatedHistory = [newItem, ...history];
+    setHistory(updatedHistory);
+    localStorage.setItem('ai-experience-history', JSON.stringify(updatedHistory));
+
+    setPrompt('');
+    setFeeling('');
+    toast.success('🎉 Đã lưu trải nghiệm đầu tiên với AI!');
+  };
+
   return (
-    <div className="mt-10 p-4 border rounded-xl bg-white space-y-4">
-      <h2 className="text-xl font-bold">📝 Thử nhập prompt của bạn</h2>
-      <textarea
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Nhập câu hỏi, yêu cầu bạn muốn gửi tới AI..."
-        className="w-full border p-2 rounded resize-none"
-        rows={3}
-      />
-      <div>
-        <label className="block mb-2 font-medium">💬 Cảm xúc sau khi thử?</label>
-        <select
+    <div className="space-y-4">
+      <h2 className="text-xl font-semibold">🧠 Hãy thử dùng AI:</h2>
+      <form onSubmit={handleSubmit} className="space-y-2">
+        <Input
+          placeholder="Bạn đã hỏi AI điều gì?"
+          value={prompt}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPrompt(e.target.value)}
+        />
+        <Input
+          placeholder="Cảm xúc sau khi dùng AI?"
           value={feeling}
-          onChange={(e) => setFeeling(e.target.value)}
-          className="border p-2 rounded"
-        >
-          <option value="">-- Chọn cảm xúc --</option>
-          <option value="😃 Thú vị">😃 Thú vị</option>
-          <option value="😕 Bối rối">😕 Bối rối</option>
-          <option value="🤔 Muốn tìm hiểu thêm">🤔 Muốn tìm hiểu thêm</option>
-        </select>
-      </div>
-      <button
-        onClick={handleSubmit}
-        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-      >
-        Lưu trải nghiệm
-      </button>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFeeling(e.target.value)}
+        />
+        <Button type="submit" className="w-full">
+          Lưu trải nghiệm AI đầu tiên
+        </Button>
+      </form>
 
       {history.length > 0 && (
-        <div className="mt-6">
-          <h3 className="font-semibold">📜 Lịch sử trải nghiệm:</h3>
-          <ul className="list-disc pl-5 space-y-1">
-            {history.map((h, i) => (
-              <li key={i}>
-                <strong>{h.input}</strong> – <em>{h.feeling}</em>
+        <div className="mt-4">
+          <h3 className="text-md font-medium mb-2">🕰️ Ký ức AI của bạn:</h3>
+          <ul className="space-y-1">
+            {history.map((item, index) => (
+              <li key={index} className="bg-gray-100 p-3 rounded-lg">
+                <div className="text-sm">
+                  <strong>Prompt:</strong> {item.prompt}
+                </div>
+                <div className="text-sm">
+                  <strong>Cảm xúc:</strong> {item.feeling}
+                </div>
               </li>
             ))}
           </ul>
@@ -66,4 +75,4 @@ export const TryAIForm = () => {
       )}
     </div>
   );
-};
+}
