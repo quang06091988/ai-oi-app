@@ -1,5 +1,6 @@
 import { PromptGroup } from './components/PromptGroup';
-import { TryAIForm } from './components/TryAIForm';
+import TryAIForm from './components/TryAIForm';
+import PromptHistory from './components/PromptHistory';
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
         </h1>
         <PromptGroup />
         <TryAIForm />
+        <PromptHistory />
       </div>
     </div>
   );

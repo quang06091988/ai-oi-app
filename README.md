@@ -1,8 +1,7 @@
-
 # 🧠 AI ƠI! – Dự án phổ cập AI thực tế cho người Việt
 
-> Phiên bản: **V1.1**
-> Ngày cập nhật: 28/05/2025
+> Phiên bản: **V1.2**
+> Ngày cập nhật: 29/05/2025
 
 ---
 
@@ -12,16 +11,18 @@
 
 ---
 
-## 🚀 Tính năng chính – V1.1
+## 🚀 Tính năng chính – V1.2
 
 ✅ **Hiển thị danh sách prompt mẫu** theo nhóm  
-✅ **Form nhập prompt cảm xúc + lưu trữ localStorage**  
-✅ **Hiển thị lịch sử tương tác** ngay trên giao diện  
+✅ **Form nhập prompt + cảm xúc + lưu trữ localStorage & Supabase**  
+✅ **Hiển thị lịch sử tương tác từ LocalStorage và Supabase**  
 ✅ **Giao diện đẹp hơn** với TailwindCSS  
 ✅ **Trải nghiệm người dùng nâng cao**:
 - Font chữ mới: Be Vietnam Pro, Inter
 - Phản hồi khi copy (toast)
 - Highlight khi lưu lịch sử
+- Hiển thị thời gian thực theo chuẩn vi-VN
+- Phân biệt rõ prompt local và prompt thật (từ Supabase)
 
 ---
 
@@ -30,8 +31,8 @@
 - **React + Vite**
 - **TailwindCSS**
 - **TypeScript**
-- **LocalStorage** để lưu trạng thái
-- **Không dùng backend**
+- **LocalStorage + Supabase (DB + Auth)** để lưu trạng thái
+- **Triển khai Vercel**
 
 ---
 
@@ -40,18 +41,18 @@
 ```
 ai-oi-app/
 ├── public/
-│   └── index.html
 ├── src/
 │   ├── components/
 │   │   ├── PromptGroup.tsx
-│   │   └── TryAIForm.tsx
-│   ├── pages/
-│   │   └── Home.tsx
+│   │   ├── TryAIForm.tsx
+│   │   └── PromptHistory.tsx
+│   ├── lib/
+│   │   └── supabaseClient.ts
 │   ├── index.css
 │   ├── main.tsx
 │   └── App.tsx
+├── .env.example
 ├── tailwind.config.js
-├── postcss.config.js
 ├── vite.config.ts
 ├── tsconfig.json
 └── README.md
@@ -78,10 +79,10 @@ npm run build
 
 ---
 
-## 🏁 Milestone tiếp theo (V1.2 - gợi ý)
+## 🏁 Milestone tiếp theo (V1.3 - dự kiến)
 
-- ☁️ Kết nối với Supabase để lưu dữ liệu thật
-- 🎨 Cho phép người dùng tùy chỉnh giao diện prompt
+- 🔐 Đăng nhập Supabase Auth (Email/Google)
+- 👤 Cá nhân hóa prompt theo người dùng
 - 🌍 Chia sẻ prompt lên mạng xã hội
 - 🧾 Tạo NFT chứng nhận "Người dùng AI lần đầu" qua Zora
 
