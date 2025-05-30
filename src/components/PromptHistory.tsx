@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { supabase } from "../lib/supabaseClient";
+import { useEffect, useState } from 'react';
+import { supabase } from '@/lib/supabaseClient';
 
 type Prompt = {
   id: number;
-  content: string;
+  prompt: string;
   emotion: string;
   created_at: string;
 };
@@ -15,16 +15,31 @@ export default function PromptHistory() {
   useEffect(() => {
     const fetchPrompts = async () => {
       setLoading(true);
+
+      const {
+        data: { user },
+        error: userError,
+      } = await supabase.auth.getUser();
+
+      if (userError || !user) {
+        setPrompts([]);
+        setLoading(false);
+        return;
+      }
+
       const { data, error } = await supabase
-        .from("prompts")
-        .select("*")
-        .order("created_at", { ascending: false });
+        .from('prompts')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false });
 
       if (error) {
-        console.error("Lỗi khi fetch dữ liệu:", error.message);
+        console.error('Lỗi khi fetch dữ liệu:', error.message);
+        setPrompts([]);
       } else {
         setPrompts(data || []);
       }
+
       setLoading(false);
     };
 
@@ -45,12 +60,12 @@ export default function PromptHistory() {
               key={item.id}
               className="border border-gray-300 rounded-lg p-3 bg-white shadow-sm"
             >
-              <p className="text-gray-800">{item.content}</p>
+              <p className="text-gray-800">{item.prompt}</p>
               <p className="text-sm text-gray-500 italic mt-1">
                 😄 Cảm xúc: <strong>{item.emotion}</strong>
               </p>
               <p className="text-xs text-gray-400 mt-1">
-                {new Date(item.created_at).toLocaleString("vi-VN")}
+                {new Date(item.created_at).toLocaleString('vi-VN')}
               </p>
             </li>
           ))}

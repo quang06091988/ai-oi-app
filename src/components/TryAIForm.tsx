@@ -1,44 +1,50 @@
-import { useState, useEffect } from 'react'
-import { supabase } from '@/lib/supabaseClient'
+import { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabaseClient';
 
 export default function TryAIForm() {
-  const [prompt, setPrompt] = useState('')
-  const [emotion, setEmotion] = useState('')
-  const [memories, setMemories] = useState<{ prompt: string; emotion: string }[]>([])
+  const [prompt, setPrompt] = useState('');
+  const [emotion, setEmotion] = useState('');
+  const [memories, setMemories] = useState<{ prompt: string; emotion: string }[]>([]);
 
-  // Lưu trải nghiệm mới vào Supabase và localStorage
   const handleSubmit = async () => {
-    if (!prompt || !emotion) return
+    if (!prompt || !emotion) return;
 
-    const newMemory = { prompt, emotion }
+    const newMemory = { prompt, emotion };
 
-    // Supabase: insert bản ghi mới
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      alert('❌ Bạn cần đăng nhập để lưu dữ liệu!');
+      return;
+    }
+
     const { error } = await supabase.from('prompts').insert([
       {
         prompt,
         emotion,
-        user_id: '1824088b-e28c-4632-9b5a-95ed1ca3f33d', // Giả định 1 user duy nhất để test
+        user_id: user.id,
       },
-    ])
+    ]);
 
     if (error) {
-      console.error('Lỗi khi lưu Supabase:', error.message)
-      return
+      console.error('Lỗi khi lưu Supabase:', error.message);
+      return;
     }
 
-    // Cập nhật local + reset input
-    const updatedMemories = [newMemory, ...memories]
-    setMemories(updatedMemories)
-    setPrompt('')
-    setEmotion('')
-    localStorage.setItem('ai_memories', JSON.stringify(updatedMemories))
-  }
+    const updatedMemories = [newMemory, ...memories];
+    setMemories(updatedMemories);
+    setPrompt('');
+    setEmotion('');
+    localStorage.setItem('ai_memories', JSON.stringify(updatedMemories));
+  };
 
-  // Load lại dữ liệu localStorage khi render lần đầu
   useEffect(() => {
-    const saved = localStorage.getItem('ai_memories')
-    if (saved) setMemories(JSON.parse(saved))
-  }, [])
+    const saved = localStorage.getItem('ai_memories');
+    if (saved) setMemories(JSON.parse(saved));
+  }, []);
 
   return (
     <div className="space-y-4 mt-4">
@@ -78,5 +84,5 @@ export default function TryAIForm() {
         </div>
       )}
     </div>
-  )
+  );
 }
