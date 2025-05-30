@@ -1,62 +1,54 @@
 # 🧠 AI ƠI! – Dự án phổ cập AI thực tế cho người Việt
 
-> Phiên bản: **V1.2**
-> Ngày cập nhật: 29/05/2025
+> Phiên bản: **V1.3**
+> Ngày cập nhật: 30/05/2025
 
 ---
 
 ## 🌟 Giới thiệu
 
-**AI ƠI!** là một ứng dụng đơn giản giúp người dùng Việt Nam lần đầu tiếp cận và trải nghiệm sức mạnh của AI (như ChatGPT) theo cách nhẹ nhàng, dễ hiểu và cá nhân hóa.
+**AI ƠI!** là một ứng dụng đơn giản giúp người dùng Việt Nam lần đầu trải nghiệm sức mạnh của AI như ChatGPT theo cách dân dã, thân thiện và có cảm xúc.
 
 ---
 
-## 🚀 Tính năng chính – V1.2
+## 🚀 Có gì mới ở V1.3?
 
-✅ **Hiển thị danh sách prompt mẫu** theo nhóm  
-✅ **Form nhập prompt + cảm xúc + lưu trữ localStorage & Supabase**  
-✅ **Hiển thị lịch sử tương tác từ LocalStorage và Supabase**  
-✅ **Giao diện đẹp hơn** với TailwindCSS  
-✅ **Trải nghiệm người dùng nâng cao**:
-- Font chữ mới: Be Vietnam Pro, Inter
-- Phản hồi khi copy (toast)
-- Highlight khi lưu lịch sử
-- Hiển thị thời gian thực theo chuẩn vi-VN
-- Phân biệt rõ prompt local và prompt thật (từ Supabase)
+🎯 **Cá nhân hóa trải nghiệm bằng Supabase Auth**
+
+✅ Đăng nhập bằng Email OTP  
+✅ Chào người dùng + cho phép Đăng xuất  
+✅ Mỗi người dùng chỉ thấy trải nghiệm của chính họ (filter theo `user_id`)  
+✅ Dữ liệu lưu lên Supabase an toàn nhờ RLS  
+✅ Tự động gán `user_id` khi lưu prompt  
+✅ UI tối giản, phù hợp Gen Z
 
 ---
 
-## 🛠️ Công nghệ sử dụng
+## ✅ Tính năng đã có
 
-- **React + Vite**
-- **TailwindCSS**
-- **TypeScript**
-- **LocalStorage + Supabase (DB + Auth)** để lưu trạng thái
+- 📌 Form nhập prompt + cảm xúc
+- 📌 Gợi ý prompt có sẵn
+- 📌 Hiển thị ký ức AI (local + Supabase)
+- 📌 Loading state, toast, hiệu ứng UX mượt
+- 📌 Giao diện đẹp, mobile responsive
+- 📌 Lưu data thật vào Supabase DB (PostgreSQL)
+
+---
+
+## 🔐 Bảo mật với Supabase RLS
+
+- Dữ liệu trong bảng `prompts` được bảo vệ bằng Row-Level Security:
+  - Chỉ SELECT/INSERT nếu `auth.uid() = user_id`
+  - Không hỗ trợ UPDATE/DELETE để tránh rủi ro
+
+---
+
+## 🛠 Công nghệ sử dụng
+
+- **React + TypeScript + TailwindCSS**
+- **Supabase Auth + Database + RLS**
+- **LocalStorage**
 - **Triển khai Vercel**
-
----
-
-## 🗂️ Cấu trúc thư mục chính
-
-```
-ai-oi-app/
-├── public/
-├── src/
-│   ├── components/
-│   │   ├── PromptGroup.tsx
-│   │   ├── TryAIForm.tsx
-│   │   └── PromptHistory.tsx
-│   ├── lib/
-│   │   └── supabaseClient.ts
-│   ├── index.css
-│   ├── main.tsx
-│   └── App.tsx
-├── .env.example
-├── tailwind.config.js
-├── vite.config.ts
-├── tsconfig.json
-└── README.md
-```
 
 ---
 
@@ -67,28 +59,16 @@ npm install
 npm run dev
 ```
 
-Mở trình duyệt tại [http://localhost:5173](http://localhost:5173)
+---
+
+## 🌍 Trang chính thức
+
+👉 [https://ai-oi-app.vercel.app](https://ai-oi-app.vercel.app)
 
 ---
 
-## 📦 Build production
+## 🏁 Định hướng V1.4 (dự kiến)
 
-```bash
-npm run build
-```
-
----
-
-## 🏁 Milestone tiếp theo (V1.3 - dự kiến)
-
-- 🔐 Đăng nhập Supabase Auth (Email/Google)
-- 👤 Cá nhân hóa prompt theo người dùng
-- 🌍 Chia sẻ prompt lên mạng xã hội
-- 🧾 Tạo NFT chứng nhận "Người dùng AI lần đầu" qua Zora
-
----
-
-## 🇻🇳 Dự án thuộc chuỗi **NFTơi! + AI ƠI!**
-> Tự build sản phẩm Web3 + AI thật sự dành cho người Việt.
-
----
+- 🎁 Mint NFT chứng nhận “Người dùng AI đầu tiên” qua Zora
+- 🧠 Gợi ý AI thật (GPT API)
+- 🌱 Mở trải nghiệm cộng đồng (share ký ức ẩn danh)
