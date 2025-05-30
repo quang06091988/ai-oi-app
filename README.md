@@ -1,6 +1,11 @@
 # 🧠 AI ƠI! – Dự án phổ cập AI thực tế cho người Việt
 
-> Phiên bản: **V1.3**
+[![Deploy to Vercel](https://img.shields.io/badge/Deployed-Vercel-000?logo=vercel)](https://ai-oi-app.vercel.app)
+[![Repo size](https://img.shields.io/github/repo-size/quang06091988/ai-oi-app?color=blue)](https://github.com/quang06091988/ai-oi-app)
+[![Made with Supabase](https://img.shields.io/badge/Made%20with-Supabase-3ECF8E?logo=supabase&logoColor=fff)](https://supabase.com)
+[![License](https://img.shields.io/github/license/quang06091988/ai-oi-app)](LICENSE)
+
+> Phiên bản: **V1.3**  
 > Ngày cập nhật: 30/05/2025
 
 ---
