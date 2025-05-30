@@ -5,8 +5,8 @@
 - [x] Cập nhật `README.md` với badge + hướng dẫn
 - [x] Gắn tag `v1.3` và cập nhật release
 - [x] Commit chuẩn `docs: update README for public release`
-- [x] Tạo ảnh preview GitHub (chưa tạo ✅)
-- [x] Ghim repo lên GitHub profile
+- [] Tạo ảnh preview GitHub
+- [] Ghim repo lên GitHub profile
 - [x] Kiểm tra hoạt động Vercel + Supabase Auth
 - [x] Test email đăng nhập, redirect và lưu dữ liệu
 
