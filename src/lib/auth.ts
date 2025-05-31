@@ -1,8 +1,18 @@
-// src/lib/auth.ts
 import { supabase } from './supabaseClient';
 
 export async function signInWithEmail(email: string) {
-  const { error } = await supabase.auth.signInWithOtp({ email });
+  const redirectUrl =
+    window.location.hostname === 'localhost'
+      ? 'http://localhost:5173'
+      : 'https://ai-oi-app.vercel.app';
+
+  const { error } = await supabase.auth.signInWithOtp({
+    email,
+    options: {
+      emailRedirectTo: redirectUrl,
+    },
+  });
+
   if (error) throw new Error(error.message);
 }
 

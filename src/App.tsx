@@ -2,6 +2,7 @@ import AuthBanner from './components/AuthBanner';
 import { PromptGroup } from './components/PromptGroup';
 import TryAIForm from './components/TryAIForm';
 import PromptHistory from './components/PromptHistory';
+import RealChat from './components/RealChat'; // ✅ THÊM DÒNG NÀY
 
 export default function App() {
   return (
@@ -13,6 +14,12 @@ export default function App() {
         <AuthBanner />
         <PromptGroup />
         <TryAIForm />
+
+        {/* ✅ Giao diện chat GPT thật */}
+        <div className="border-t pt-4">
+          <RealChat />
+        </div>
+
         <PromptHistory />
       </div>
     </div>
