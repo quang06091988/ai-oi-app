@@ -1,5 +1,21 @@
 # 📦 CHANGELOG
 
+### v1.5 – Lưu ký ức GPT thật với cảm xúc người dùng (2025-05-31)
+
+**✨ Tính năng mới:**
+- Tích hợp gọi GPT thật (gpt-4o-mini)
+- Hiển thị popup cảm xúc sau mỗi phản hồi GPT
+- Lưu dữ liệu vào bảng `real_chats` gồm: `prompt`, `response`, `emotion`, `user_id`, `model`, `created_at`
+
+**🛠 File thay đổi:**
+- ➕ `src/services/realChatService.ts`
+- ✏️ `src/components/RealChat.tsx`
+
+**🎯 Mục tiêu:**
+Ghi lại hành vi thật của người dùng khi trò chuyện với AI – tạo nền tảng phân tích hành vi và trải nghiệm cá nhân hóa sau này.
+
+---
+
 ## [v1.4] – 2025-05-31
 
 ### ✨ Tính năng mới
