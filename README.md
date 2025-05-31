@@ -4,7 +4,7 @@
 📦 GitHub: https://github.com/quang06091988/ai-oi-app
 
 <p align="center">
-  <img src="/public/ai-oi-preview.webp" alt="AI ƠI! Preview" width="600" />
+  <img src="/public/ai-oi-preview.webp" alt="✨ AI Ơi – Dự án phổ cập AI cho người mới, ai-oi.app.vercel.app" width="600" />
 </p>
 
 ---
