@@ -1,5 +1,22 @@
 # 📦 CHANGELOG
 
+## [v1.4] – 2025-05-31
+
+### ✨ Tính năng mới
+- Tích hợp GPT thật bằng OpenAI API (`gpt-4o-mini`)
+- Phản hồi hiển thị trực tiếp trên giao diện “Trò chuyện cùng AI ƠI!”
+- Log phản hồi GPT rõ ràng trong console
+- Bắt lỗi `invalid_api_key` và `insufficient_quota` thân thiện
+
+### 🔧 Thay đổi
+- Cập nhật `openaiService.ts` để gọi GPT thật bằng `fetch`
+- Sửa `RealChat.tsx` để gửi/nhận tin nhắn GPT thật
+
+### 📚 Tài liệu
+- Cập nhật `README.md` với thông tin phiên bản V1.4
+
+---
+
 ## [v1.3] – 2025-05-30
 
 ### ✨ Tính năng mới

@@ -1,79 +1,60 @@
-# 🧠 AI ƠI! – Dự án phổ cập AI thực tế cho người Việt
+# AI ƠI! – Nền tảng phổ cập AI cho người Việt 🇻🇳
 
-[![Deploy to Vercel](https://img.shields.io/badge/Deployed-Vercel-000?logo=vercel)](https://ai-oi-app.vercel.app)
-[![Repo size](https://img.shields.io/github/repo-size/quang06091988/ai-oi-app?color=blue)](https://github.com/quang06091988/ai-oi-app)
-[![Made with Supabase](https://img.shields.io/badge/Made%20with-Supabase-3ECF8E?logo=supabase&logoColor=fff)](https://supabase.com)
-[![License](https://img.shields.io/github/license/quang06091988/ai-oi-app)](LICENSE)
+> Phiên bản: **V1.4**  
+> Ngày cập nhật: 31/05/2025
 
-> Phiên bản: **V1.3**  
-> Ngày cập nhật: 30/05/2025
+Website: [https://ai-oi-app.vercel.app](https://ai-oi-app.vercel.app)  
+Mã nguồn: [https://github.com/quang06091988/ai-oi-app](https://github.com/quang06091988/ai-oi-app)
 
 ---
 
-## 🌟 Giới thiệu
+## 🚀 Có gì mới ở V1.4?
 
-**AI ƠI!** là một ứng dụng đơn giản giúp người dùng Việt Nam lần đầu trải nghiệm sức mạnh của AI như ChatGPT theo cách dân dã, thân thiện và có cảm xúc.
+🧠 **Trải nghiệm AI thật với GPT miễn phí**
 
----
+✅ Tích hợp OpenAI GPT API thật (`gpt-4o-mini`)  
+✅ Giao tiếp với ChatGPT theo thời gian thực  
+✅ Log rõ ràng trong console khi lỗi key/quota  
+✅ Giữ nguyên trải nghiệm đơn giản, dễ dùng cho người mới
 
-## 🚀 Có gì mới ở V1.3?
-
-🎯 **Cá nhân hóa trải nghiệm bằng Supabase Auth**
-
-✅ Đăng nhập bằng Email OTP  
-✅ Chào người dùng + cho phép Đăng xuất  
-✅ Mỗi người dùng chỉ thấy trải nghiệm của chính họ (filter theo `user_id`)  
-✅ Dữ liệu lưu lên Supabase an toàn nhờ RLS  
-✅ Tự động gán `user_id` khi lưu prompt  
-✅ UI tối giản, phù hợp Gen Z
-
----
-
-## ✅ Tính năng đã có
-
-- 📌 Form nhập prompt + cảm xúc
-- 📌 Gợi ý prompt có sẵn
-- 📌 Hiển thị ký ức AI (local + Supabase)
-- 📌 Loading state, toast, hiệu ứng UX mượt
-- 📌 Giao diện đẹp, mobile responsive
-- 📌 Lưu data thật vào Supabase DB (PostgreSQL)
-
----
-
-## 🔐 Bảo mật với Supabase RLS
-
-- Dữ liệu trong bảng `prompts` được bảo vệ bằng Row-Level Security:
-  - Chỉ SELECT/INSERT nếu `auth.uid() = user_id`
-  - Không hỗ trợ UPDATE/DELETE để tránh rủi ro
-
----
-
-## 🛠 Công nghệ sử dụng
-
-- **React + TypeScript + TailwindCSS**
-- **Supabase Auth + Database + RLS**
-- **LocalStorage**
-- **Triển khai Vercel**
+👉 Dùng thử ngay trên [https://ai-oi-app.vercel.app](https://ai-oi-app.vercel.app)
 
 ---
 
 ## 🧪 Cách chạy local
 
 ```bash
+git clone https://github.com/quang06091988/ai-oi-app
+cd ai-oi-app
 npm install
 npm run dev
 ```
 
+Tạo file `.env.local`:
+
+```
+VITE_OPENAI_API_KEY=sk-...
+```
+
+> Bạn có thể dùng model `gpt-4o-mini` miễn phí từ OpenAI
+
 ---
 
-## 🌍 Trang chính thức
+## 💡 Mục tiêu dự án
 
-👉 [https://ai-oi-app.vercel.app](https://ai-oi-app.vercel.app)
+Giúp người Việt – học sinh, người lao động, người lớn tuổi – tiếp cận AI một cách dễ hiểu, cảm xúc và dễ bắt đầu nhất.
 
 ---
 
-## 🏁 Định hướng V1.4 (dự kiến)
+## 🛠 Công nghệ
 
-- 🎁 Mint NFT chứng nhận “Người dùng AI đầu tiên” qua Zora
-- 🧠 Gợi ý AI thật (GPT API)
-- 🌱 Mở trải nghiệm cộng đồng (share ký ức ẩn danh)
+- React + TypeScript + TailwindCSS + Vite
+- Supabase (Auth + PostgreSQL)
+- OpenAI API (GPT-4o mini)
+- Triển khai trên Vercel
+
+---
+
+## 📦 License
+
+MIT
