@@ -1,5 +1,38 @@
 # 📦 CHANGELOG
 
+### v1.6.1 – Nâng trải nghiệm người dùng (2025-06-03)
+
+**✨ Cải tiến UX:**
+- Gợi ý nhẹ đầu trang: "🌱 Bạn chỉ cần bắt đầu từ một câu hỏi nhỏ..."
+- Placeholder gợi cảm hứng trong ô input
+- Focus lại ô nhập sau khi gửi câu hỏi
+- Toast “✅ AI đã trả lời!” sau mỗi phản hồi
+- Hover hiệu ứng mượt mà khi xem nhật ký
+- Dòng nhắc nhẹ nhàng phía dưới ô chat
+
+**🛠 File thay đổi:**
+- ✏️ `src/components/RealChat.tsx`
+- ✏️ `src/components/DiaryEntry.tsx`
+- ✏️ `src/App.tsx`
+
+---
+
+### v1.6 – Hồ sơ AI đầu tiên của bạn (2025-06-02)
+
+**✨ Tính năng mới:**
+- Xem lại toàn bộ câu hỏi thật + phản hồi GPT + cảm xúc đã lưu
+- Giao diện `DiaryList` đẹp hơn, có nút 📸 lưu ảnh mỗi đoạn chat
+- Tự động chuyển sang nhật ký sau 3 lượt hỏi đầu
+- Toast động viên người dùng sau 3 lượt đầu tiên
+
+**🛠 File thay đổi:**
+- ➕ `src/components/DiaryList.tsx`
+- ➕ `src/components/DiaryEntry.tsx`
+- ✏️ `src/components/RealChat.tsx`
+- ✏️ `src/App.tsx`
+
+---
+
 ### v1.5 – Lưu ký ức GPT thật với cảm xúc người dùng (2025-05-31)
 
 **✨ Tính năng mới:**
